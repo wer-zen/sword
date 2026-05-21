@@ -8,13 +8,13 @@ export function AppCard({ entry }: { entry: AppEntry }) {
 
   return (
     <div
-      className="rounded-xl p-5 h-[210px]"
+      className="rounded-xl p-5 h-[189px]"
       style={{ backgroundColor: "var(--surface-secondary)" }}
     >
       <div className="flex flex-row gap-5 items-start h-full">
         {/* Icon block */}
         <div
-          className="w-[117px] h-[117px] shrink-0 flex items-center justify-center"
+          className="w-[100px] h-[100px] shrink-0 flex items-center justify-center"
         >
           {imgError ? (
             <span className="text-sm" style={{ color: "var(--muted)" }}>
@@ -47,15 +47,15 @@ export function AppCard({ entry }: { entry: AppEntry }) {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 min-w-0">
             {entry.sources.length > 1 && <SourceSwitcher entry={entry} />}
             <Button
               variant="secondary"
               size="sm"
-              className="rounded-full px-5"
+              className="rounded-full px-5 shrink-0 ml-auto"
               style={{
-                backgroundColor: "var(--surface-tertiary)",
-                color: "var(--foreground)",
+                backgroundColor: "#3b82f6",
+                color: "#ffffff",
               }}
             >
               Get

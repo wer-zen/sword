@@ -14,12 +14,12 @@ export function SourceSwitcher({ entry }: { entry: AppEntry }) {
       onSelectionChange={(key) => {
         if (key != null) setSource(String(key));
       }}
-      className="min-w-[160px]"
+      className="min-w-0 flex-1"
       aria-label="Select source"
     >
-      <Select.Trigger className="text-sm" style={{ color: "var(--foreground)" }}>
-        <Select.Value />
-        <Select.Indicator />
+      <Select.Trigger className="text-sm overflow-hidden rounded-full" style={{ color: "var(--foreground)" }}>
+        <Select.Value className="truncate min-w-0" />
+        <Select.Indicator className="shrink-0" />
       </Select.Trigger>
       <Select.Popover>
         <ListBox aria-label="Sources">

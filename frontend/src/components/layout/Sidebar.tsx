@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ListBox } from "@heroui/react";
 import {
   Search,
+  Home,
   Briefcase,
   Code2,
   Palette,
@@ -16,6 +17,7 @@ import {
 
 const TOP_ITEMS = [
   { id: "search", label: "Search", icon: Search },
+  { id: "home", label: "Home", icon: Home },
   { id: "productivity", label: "Productivity", icon: Briefcase },
   { id: "development", label: "Development", icon: Code2 },
   { id: "art", label: "Art", icon: Palette },
