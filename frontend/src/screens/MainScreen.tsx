@@ -3,6 +3,7 @@ import { Topbar } from "../components/layout/Topbar";
 import { AppGrid } from "../components/layout/AppGrid";
 import { PlaceholderPanel } from "./PlaceholderPanel";
 import { AboutScreen } from "./AboutScreen";
+import { SettingsScreen } from "./SettingsScreen";
 import { useUIStore } from "../store/ui.store";
 
 function HomePanel() {
@@ -28,6 +29,8 @@ export function MainScreen() {
           <HomePanel />
         ) : activePanel === "about" ? (
           <AboutScreen />
+        ) : activePanel === "settings" ? (
+          <SettingsScreen />
         ) : (
           <PlaceholderPanel name={activePanel} />
         )}

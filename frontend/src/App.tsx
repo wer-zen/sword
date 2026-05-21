@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/core";
 import "./App.css";
+import Titlebar from "./components/Titlebar";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -13,7 +14,9 @@ function App() {
   }
 
   return (
-    <main className="container">
+    <>
+    <Titlebar />
+    <main className="container" style={{ paddingTop: "32px" }}>
       <h1>Welcome to Tauri + React</h1>
 
       <div className="row">
@@ -45,6 +48,7 @@ function App() {
       </form>
       <p>{greetMsg}</p>
     </main>
+    </>
   );
 }
 
