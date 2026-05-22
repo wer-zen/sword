@@ -25,15 +25,28 @@ export function SearchScreen() {
 
   const runSearch = useCallback(async (q: string) => {
     abortRef.current?.abort();
-    abortRef.current = new AbortController();
+    const controller = new AbortController();
+    abortRef.current = controller;
     setPhase("loading");
     setResults([]);
     try {
-      const res = await searchApps(q);
+      // The local phase updates results fast; the complete phase (with AUR)
+      // updates them again. A superseded search is ignored via the signal.
+      const res = await searchApps(q, {
+        signal: controller.signal,
+        onPartial: (partial) => {
+          if (controller.signal.aborted) return;
+          setResults(partial.results);
+          setTotal(partial.total);
+          setPhase("results");
+        },
+      });
+      if (controller.signal.aborted) return;
       setResults(res.results);
       setTotal(res.total);
       setPhase("results");
     } catch {
+      if (controller.signal.aborted) return;
       setPhase("results");
     }
   }, []);

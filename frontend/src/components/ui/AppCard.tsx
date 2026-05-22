@@ -8,14 +8,12 @@ export function AppCard({ entry }: { entry: AppEntry }) {
 
   return (
     <div
-      className="rounded-xl p-5 h-[189px]"
+      className="rounded-xl p-5 h-[189px] flex flex-col gap-3"
       style={{ backgroundColor: "var(--surface-secondary)" }}
     >
-      <div className="flex flex-row gap-5 items-start h-full">
-        {/* Icon block */}
-        <div
-          className="w-[100px] h-[100px] shrink-0 flex items-center justify-center"
-        >
+      {/* Top row: icon + text */}
+      <div className="flex flex-row gap-5 items-start flex-1 min-h-0">
+        <div className="w-[100px] h-[100px] shrink-0 flex items-center justify-center">
           {imgError ? (
             <span className="text-sm" style={{ color: "var(--muted)" }}>
               Icon
@@ -26,42 +24,44 @@ export function AppCard({ entry }: { entry: AppEntry }) {
               className="w-full h-full object-contain"
               alt={entry.name}
               onError={() => setImgError(true)}
+              draggable={false}
             />
           )}
         </div>
 
-        {/* Text + action stack */}
-        <div className="flex flex-col justify-between flex-1 h-full min-w-0">
-          <div>
-            <h3
-              className="text-[22px] font-semibold leading-tight truncate"
-              style={{ color: "var(--foreground)" }}
-            >
-              {entry.name}
-            </h3>
-            <p
-              className="text-sm mt-1 line-clamp-2"
-              style={{ color: "var(--muted)" }}
-            >
-              {entry.description}
-            </p>
-          </div>
-
-          <div className="flex items-center gap-3 min-w-0">
-            {entry.sources.length > 1 && <SourceSwitcher entry={entry} />}
-            <Button
-              variant="secondary"
-              size="sm"
-              className="rounded-full px-5 shrink-0 ml-auto"
-              style={{
-                backgroundColor: "#3b82f6",
-                color: "#ffffff",
-              }}
-            >
-              Get
-            </Button>
-          </div>
+        <div className="flex flex-col min-w-0">
+          <h3
+            className="text-[22px] font-semibold leading-tight truncate"
+            style={{ color: "var(--foreground)" }}
+          >
+            {entry.name}
+          </h3>
+          <p
+            className="text-sm mt-1 line-clamp-2"
+            style={{ color: "var(--muted)" }}
+          >
+            {entry.description}
+          </p>
         </div>
+      </div>
+
+      {/* Bottom row: source dropdown starts under icon, Get button at end */}
+      <div className="flex items-center gap-3">
+        {entry.sources.length > 1 && (
+          <div className="w-[100px] shrink-0" />
+        )}
+        {entry.sources.length > 1 && <SourceSwitcher entry={entry} />}
+        <Button
+          variant="secondary"
+          size="sm"
+          className="rounded-full px-5 shrink-0 ml-auto"
+          style={{
+            backgroundColor: "#3b82f6",
+            color: "#ffffff",
+          }}
+        >
+          Get
+        </Button>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { AppEntry } from "../types/app";
-import { fetchApps } from "./apps";
+import { backendSearch } from "../ipc/backend";
 
 export type SearchResult = AppEntry;
 
@@ -9,11 +9,22 @@ export type SearchResponse = {
   query: string;
 };
 
-// Replace with real backend call (e.g. Tauri IPC or REST)
+// searchApps runs a two-phase search against the Go backend. onPartial fires
+// for the fast local phase; the returned promise resolves with the final,
+// AUR-merged results.
 export async function searchApps(
   query: string,
-  opts: { limit?: number; offset?: number } = {}
+  opts: {
+    signal?: AbortSignal;
+    onPartial?: (res: SearchResponse) => void;
+  } = {}
 ): Promise<SearchResponse> {
-  const { apps, total } = await fetchApps({ q: query, ...opts });
-  return { results: apps, total, query };
+  const results = await backendSearch(
+    query,
+    (_phase, partial) => {
+      opts.onPartial?.({ results: partial, total: partial.length, query });
+    },
+    opts.signal
+  );
+  return { results, total: results.length, query };
 }
