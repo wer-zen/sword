@@ -5,9 +5,10 @@
   <p>Sword stands for <strong>System Wide Open Repository Director</strong>.</p>
 </div>
 
-<img width="2166" height="1256" alt="2026-05-23_12-33-11" src="https://github.com/user-attachments/assets/832c1e77-fb4e-4bc5-b77d-6aaf7c26b724" />
-<img width="2158" height="1248" alt="2026-05-23_12-33-43" src="https://github.com/user-attachments/assets/6ac72f31-9077-47be-93f3-d8918e8cd6b3" />
-
+<div align="center">
+  <img width="49%" src="https://github.com/user-attachments/assets/832c1e77-fb4e-4bc5-b77d-6aaf7c26b724" alt="2026-05-23_12-33-11" />
+  <img width="49%" src="https://github.com/user-attachments/assets/6ac72f31-9077-47be-93f3-d8918e8cd6b3" alt="2026-05-23_12-33-43" />
+</div>
 
 ## Status
 Currently the app is WIP (work in progress) and comes with no promises. 
