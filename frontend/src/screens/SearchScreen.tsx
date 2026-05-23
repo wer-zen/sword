@@ -169,7 +169,7 @@ export function SearchScreen() {
                   key={r.id}
                   style={{
                     animation: "fadeSlideIn 0.3s ease both",
-                    animationDelay: `${i * 50}ms`,
+                    animationDelay: `${Math.min(i, 10) * 50}ms`,
                   }}
                 >
                   <AppCard entry={r} />
